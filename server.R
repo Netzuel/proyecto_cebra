@@ -13,10 +13,10 @@ users <- list(
 
 text <- reactiveValues(text = "inicializado")
 
-datos_raw <- read.csv("database.csv")
-datos_raw$Fecha <- ymd(datos_raw$Fecha)
-colnames(datos_raw) <- c("Nombre", "Apellidos", "Fecha", "F1.5", "F3", "F6", "F12", "F18")
-datos <- reactiveValues(datos = datos_raw)
+datos_raw <- reactive({read.csv("database.csv")})
+datos_raw()$Fecha <- ymd(datos_raw()$Fecha)
+colnames(datos_raw()) <- c("Nombre", "Apellidos", "Fecha", "F1.5", "F3", "F6", "F12", "F18")
+datos <- reactiveValues(datos = datos_raw())
 
 server <- function(input, output) {
   datos_raw_fecha_string <- reactive({
