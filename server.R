@@ -28,32 +28,42 @@ server <- function(input, output) {
   })
   
   observeEvent(input$login, {
-    if(input$user %in% users$username){
-      if(input$password == users$password[users$username == input$user]){
-        text$text <- tags$p("Identificado correctamente.", style = "color: green; font-weight: 600;  padding-top: 5px;font-size:16px;",  class = "text-center")
-        show("text_login")
-        show("match")
-        show("match_tabsetpanel")
-        if(input$user == "cebrita"){
-          show("upload_button")
-        }
-        else{
-          hide("upload_button")
-        }
-      }
-      else{
-        text$text <- tags$p("¡Usuario o contraseña incorrectos!", style = "color: red; font-weight: 600;  padding-top: 5px;font-size:16px;",  class = "text-center")
-        show("text_login")
-        hide("match")
-        hide("match_tabsetpanel")
-        hide("upload_button")
-      }
+    #if(input$user %in% users$username){
+    #  if(input$password == users$password[users$username == input$user]){
+    #    text$text <- tags$p("Identificado correctamente.", style = "color: green; font-weight: 600;  padding-top: 5px;font-size:16px;",  class = "text-center")
+    #    show("text_login")
+    #    show("match")
+    #    show("match_tabsetpanel")
+    #    if(input$user == "cebrita"){
+    #      show("upload_button")
+    #    }
+    #    else{
+    #      hide("upload_button")
+    #    }
+    #  }
+    #  else{
+    #    text$text <- tags$p("¡Usuario o contraseña incorrectos!", style = "color: red; font-weight: 600;  padding-top: 5px;font-size:16px;",  class = "text-center")
+    #    show("text_login")
+    #    hide("match")
+    #    hide("match_tabsetpanel")
+    #    hide("upload_button")
+    #  }
+    #}
+    #else{
+    #  text$text <- tags$p("¡Usuario o contraseña incorrectos!", style = "color: red; font-weight: 600;  padding-top: 5px;font-size:16px;",  class = "text-center")
+    #  show("text_login")
+    #  hide("match")
+    #  hide("match_tabsetpanel")
+    #  hide("upload_button")
+    #}
+    text$text <- tags$p("Identificado correctamente.", style = "color: green; font-weight: 600;  padding-top: 5px;font-size:16px;",  class = "text-center")
+    show("text_login")
+    show("match")
+    show("match_tabsetpanel")
+    if(input$user == "cebrita"){
+      show("upload_button")
     }
     else{
-      text$text <- tags$p("¡Usuario o contraseña incorrectos!", style = "color: red; font-weight: 600;  padding-top: 5px;font-size:16px;",  class = "text-center")
-      show("text_login")
-      hide("match")
-      hide("match_tabsetpanel")
       hide("upload_button")
     }
   })
