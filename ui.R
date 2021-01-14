@@ -138,7 +138,7 @@ body <- dashboardBody(
   )
 )
 
-dashboardPagePlus(
+dashboardPage(
   dashboardHeader(title = "", disable = TRUE),
   skin = "black",
   sidebar,
