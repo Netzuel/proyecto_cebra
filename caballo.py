@@ -3,6 +3,7 @@ import glob
 import numpy as np
 import pandas as pd
 import random
+import paramiko
 from datetime import datetime
 
 freq_x = [1.5, 3, 6, 12, 18]
@@ -180,9 +181,24 @@ if __name__ == "__main__":
     plt.savefig(nombre + "_" + datetime.now().strftime('%m-%d-%Y') + ".png")
 
     try:
-        new_row = {"Nombre":nombre, "Apellidos": apellidos, "Fecha":datetime.now().strftime('%m-%d-%Y'), "1,5":umbrales[0], "3":umbrales[1], "6":umbrales[2], "12":umbrales[3], "18":umbrales[4]}
+        new_row = {"Nombre":nombre, "Apellidos": apellidos, "Fecha":datetime.now().strftime('%Y-%m-%d'), "1,5":umbrales[0], "3":umbrales[1], "6":umbrales[2], "12":umbrales[3], "18":umbrales[4]}
         database = pd.read_csv("database.csv")
         database = database.append(new_row, ignore_index = True)
         database.to_csv("database.csv", index = False)
+
+        import paramiko
+        host = "167.172.108.141"
+        port = 22
+        username = "root"
+        password = "asASkmfdmkA123!a"
+
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(host, port, username, password)
+        sftp = ssh.open_sftp()
+        sftp.put("database.csv", "/srv/shiny-server/proyecto_cebra/database.csv")
+        sftp.close()
+
+        print("Base de datos actualizada y enviada a la Web.")
     except:
-        print("No existe la base de datos llamada 'database.csv'.")
+        print("No existe la base de datos llamada 'database.csv' o ha sucedido un error de conexión.")
