@@ -138,9 +138,10 @@ body <- dashboardBody(
   )
 )
 
-dashboardPage(
+dashboardPagePlus(
   dashboardHeader(title = "", disable = TRUE),
   skin = "black",
   sidebar,
-  body
+  body,
+  title <- "Proyecto Cebra"
 )
