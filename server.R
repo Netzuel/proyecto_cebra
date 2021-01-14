@@ -28,43 +28,43 @@ server <- function(input, output) {
   })
   
   observeEvent(input$login, {
-    #if(input$user %in% users$username){
-    #  if(input$password == users$password[users$username == input$user]){
-    #    text$text <- tags$p("Identificado correctamente.", style = "color: green; font-weight: 600;  padding-top: 5px;font-size:16px;",  class = "text-center")
-    #    show("text_login")
-    #    show("match")
-    #    show("match_tabsetpanel")
-    #    if(input$user == "cebrita"){
-    #      show("upload_button")
-    #    }
-    #    else{
-    #      hide("upload_button")
-    #    }
-    #  }
-    #  else{
-    #    text$text <- tags$p("¡Usuario o contraseña incorrectos!", style = "color: red; font-weight: 600;  padding-top: 5px;font-size:16px;",  class = "text-center")
-    #    show("text_login")
-    #    hide("match")
-    #    hide("match_tabsetpanel")
-    #    hide("upload_button")
-    #  }
-    #}
-    #else{
-    #  text$text <- tags$p("¡Usuario o contraseña incorrectos!", style = "color: red; font-weight: 600;  padding-top: 5px;font-size:16px;",  class = "text-center")
-    #  show("text_login")
-    #  hide("match")
-    #  hide("match_tabsetpanel")
-    #  hide("upload_button")
-    #}
-    text$text <- tags$p("Identificado correctamente.", style = "color: green; font-weight: 600;  padding-top: 5px;font-size:16px;",  class = "text-center")
-    show("text_login")
-    show("match")
-    show("match_tabsetpanel")
-    if(input$user == "cebrita"){
-      show("upload_button")
+    if(input$user %in% users$username){
+      if(input$password == users$password[users$username == input$user]){
+        text$text <- tags$p("Identificado correctamente.", style = "color: green; font-weight: 600;  padding-top: 5px;font-size:16px;",  class = "text-center")
+        shinyjs::show("text_login")
+        shinyjs::show("match")
+        shinyjs::show("match_tabsetpanel")
+        if(input$user == "cebrita"){
+          shinyjs::show("upload_button")
+        }
+        else{
+          shinyjs::hide("upload_button")
+        }
+      }
+      else{
+        text$text <- tags$p("¡Usuario o contraseña incorrectos!", style = "color: red; font-weight: 600;  padding-top: 5px;font-size:16px;",  class = "text-center")
+        shinyjs::show("text_login")
+        shinyjs::hide("match")
+        shinyjs::hide("match_tabsetpanel")
+        shinyjs::hide("upload_button")
+      }
     }
     else{
-      hide("upload_button")
+      text$text <- tags$p("¡Usuario o contraseña incorrectos!", style = "color: red; font-weight: 600;  padding-top: 5px;font-size:16px;",  class = "text-center")
+      shinyjs::show("text_login")
+      shinyjs::hide("match")
+      shinyjs::hide("match_tabsetpanel")
+      shinyjs::hide("upload_button")
+    }
+    text$text <- tags$p("Identificado correctamente.", style = "color: green; font-weight: 600;  padding-top: 5px;font-size:16px;",  class = "text-center")
+    shinyjs::show("text_login")
+    shinyjs::show("match")
+    shinyjs::show("match_tabsetpanel")
+    if(input$user == "cebrita"){
+      shinyjs::show("upload_button")
+    }
+    else{
+      shinyjs::hide("upload_button")
     }
   })
   
@@ -91,30 +91,30 @@ server <- function(input, output) {
                   datos_new <- unique(rbind(datos$datos, datos_new))
                   datos$datos <- datos_new
                   write.csv(datos_new, "database.csv", row.names = FALSE)
-                  hide("upload_wrong")
+                  shinyjs::hide("upload_wrong")
                 }
                 else{
-                  show("upload_wrong")
+                  shinyjs::show("upload_wrong")
                 }
               }
               else{
-                show("upload_wrong")
+                shinyjs::show("upload_wrong")
               }
             }
             else{
-              show("upload_wrong")
+              shinyjs::show("upload_wrong")
             }
           }
           else{
-            show("upload_wrong")
+            shinyjs::show("upload_wrong")
           }
         }
         else{
-          show("upload_wrong")
+          shinyjs::show("upload_wrong")
         }
       }
     }, error = function(error_condition){
-      show("upload_wrong")
+      shinyjs::show("upload_wrong")
     })
   })
   
@@ -138,10 +138,10 @@ server <- function(input, output) {
   
   observeEvent(input$visualizar, {
     if(input$visualizar[1] %% 2 != 0){
-      show("database_hidden")
+      shinyjs::show("database_hidden")
     }
     else{
-      hide("database_hidden")
+      shinyjs::hide("database_hidden")
     }
   })
   
