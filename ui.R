@@ -23,8 +23,7 @@ body <- dashboardBody(
             box(title = h1(tags$strong("Quiénes somos"), align = "center"),
                 width = 12,
                 solidHeader = TRUE,
-                tags$h3("Hola somos la gente de la cebrita uwu"),
-                HTML('<center><img src="gif_prueba.gif"></center>'))
+                tags$h3("Web en construcción"))
     ),
     
     tabItem(tabName = "test",
