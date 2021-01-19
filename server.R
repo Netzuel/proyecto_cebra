@@ -60,16 +60,6 @@ server <- function(input, output) {
       shinyjs::hide("match_tabsetpanel")
       shinyjs::hide("upload_button")
     }
-    text$text <- tags$p("Identificado correctamente.", style = "color: green; font-weight: 600;  padding-top: 5px;font-size:16px;",  class = "text-center")
-    shinyjs::show("text_login")
-    shinyjs::show("match")
-    shinyjs::show("match_tabsetpanel")
-    if(input$user == "cebrita"){
-      shinyjs::show("upload_button")
-    }
-    else{
-      shinyjs::hide("upload_button")
-    }
   })
   
   observeEvent(input$uploaded, {
